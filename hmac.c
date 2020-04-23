@@ -11,13 +11,6 @@ void xor(unsigned char *dest,int dest_len,unsigned char *src1,unsigned char *src
 		dest[i] = src1[i]^src2[i];
 	}
 }
-void pack(unsigned char *dest,int dest_len,unsigned long src){
-	dest += dest_len;
-	dest[3] = (unsigned char)src;
-	dest[2] = (unsigned char)(src>>8);
-	dest[1] = (unsigned char)(src>>16);
-	dest[0] = (unsigned char)(src>>24);
-}
 void hmac_sha256(const unsigned char *data,size_t len,const unsigned char *key,int len_key,unsigned char *out){
 	int block_size = 64;
 	int hash_size = 32;
