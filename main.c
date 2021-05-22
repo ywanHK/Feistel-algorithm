@@ -21,7 +21,7 @@ void encrypt(unsigned char *message,char *pwd,unsigned char *out){
 	}
 	memset(tmp,0x00,32);
 	for(int i=0;i<ROUND;i++){
-		hmac_sha256(rhs,16,key[0],16,tmp);
+		hmac_sha256(rhs,16,key[i],16,tmp);
 		xor(tmp,16,lhs,tmp);
 		memcpy(lhs,rhs,16);
 		memcpy(rhs,tmp,16);
@@ -43,7 +43,7 @@ void decrypt(unsigned char *message,char *pwd,unsigned char *out){
 	}
 	memset(tmp,0x00,32);
 	for(int i=ROUND-1;i>=0;i--){
-		hmac_sha256(rhs,16,key[0],16,tmp);
+		hmac_sha256(rhs,16,key[i],16,tmp);
 		xor(tmp,16,lhs,tmp);
 		memcpy(lhs,rhs,16);
 		memcpy(rhs,tmp,16);
